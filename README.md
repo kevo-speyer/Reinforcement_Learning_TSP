@@ -8,5 +8,5 @@ $ python3 tsp_solver.py
 
 References:
 1) TSP https://en.wikipedia.org/wiki/Travelling_salesman_problem
-
-2) https://towardsdatascience.com/reinforcement-learning-for-combinatorial-optimization-d1402e396e91
+2) RL https://skymind.ai/wiki/deep-reinforcement-learning
+2) RL + TSP https://towardsdatascience.com/reinforcement-learning-for-combinatorial-optimization-d1402e396e91
