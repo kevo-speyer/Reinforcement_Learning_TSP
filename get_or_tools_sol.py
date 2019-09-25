@@ -31,20 +31,20 @@ def create_data_model(dist_mat):
 
 def print_solution(manager, routing, assignment):
     """Prints assignment on console."""
-    print('Objective: {} miles'.format(assignment.ObjectiveValue()))
+    #print('Objective: {} miles'.format(assignment.ObjectiveValue()))
     index = routing.Start(0)
-    plan_output = 'Route for vehicle 0:\n'
+    plan_output = '' #'Route for vehicle 0:\n'
     route_distance = 0
     while not routing.IsEnd(index):
         plan_output += ' {} ->'.format(manager.IndexToNode(index))
         previous_index = index
         index = assignment.Value(routing.NextVar(index))
         route_distance += routing.GetArcCostForVehicle(previous_index, index, 0)
-    plan_output += ' {}\n'.format(manager.IndexToNode(index))
-    print(plan_output)
-    plan_output += 'Route distance: {}miles\n'.format(route_distance)
+    plan_output += ' {}'.format(manager.IndexToNode(index))
+    #print(plan_output)
+    #plan_output += 'Route distance: {}miles\n'.format(route_distance)
 
-    return assignment.ObjectiveValue()
+    return assignment.ObjectiveValue(),plan_output
 
 def or_solution(dist_mat):
     """Entry point of the program."""
@@ -82,6 +82,6 @@ def or_solution(dist_mat):
     # Print solution on console.
     if assignment:
         #print(assignment.ObjectiveValue())
-        print_solution(manager, routing, assignment)
+        dist, plan_route = print_solution(manager, routing, assignment)
 
-    return assignment.ObjectiveValue()
+    return dist, plan_route
