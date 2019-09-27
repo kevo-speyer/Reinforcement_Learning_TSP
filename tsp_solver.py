@@ -55,7 +55,7 @@ alpha = 0.012
 gamma = 0.4
 #for alpha in np.linspace(0.012,0.012,1):
 #    for gamma in np.linspace(0.4 ,0.4,100):
-for _ in range(100):
+for _ in range(15):
         slow_pctg, rl_route, rl_dist, google_route, google_dist = tsp_solver(dist_mat, alpha=alpha, gamma=gamma)
         if slow_pctg < best_pctg:
             best_pctg = slow_pctg

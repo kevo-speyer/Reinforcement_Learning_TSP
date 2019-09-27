@@ -1,0 +1,20 @@
+Title: Implementation of a Reinforcement Learning algorithm from scratch to solve the Travelling Salesman Problem
+
+Subhead: After reading this posts you will be able to write your first Reinforcement Learning program to solve a real life problem and beat google at it.  
+
+Reinforcement Learning (RL) has gained a lot of attraction due to it's hability surpass humans at numerous table games, like chess, checkers and Go. If you are interested in AI, you have surely seen the video where a RL trained program finish finishes a super mario level.
+
+In this post I'll show a how to write from scratch your first RL program. Then I'll show how this algorithm manages to find better solutions for the Travelling Salesman Problem (TSP) than googles spacialized algorithms. In this post I will not go through the mathematic details of RL.
+
+We will use a model-free RL, named Q-learning. The key element in this algorithm is Q(s,a), which gives a score for each action to take, given the state that the agent is in. During training the agent will go through various states and estimate what is the total reward for each possible action, taking into acount the short and long term consequences. Mathematically, this is written:
+
+Q(s,a) <- Q(s,a) + alpha *( r(s,a) + gamma * max_a' ( Q(a,a') ) - Q(s,a) )
+
+The parameters are alpha (learning rate) and gamma (discount factor). r(s,a) is rhe immediate reward for taking actions a under state s. The second term  max_a' ( Q(a,a') ) is the tricky one. This adds the future reward to Q(s,a) so that long term objectives are taken into acount in Q(s,a). Gamma is a discount factor between 0 and 1, that gives a lower whight to distant events.
+
+Now it's just a matter of mapping states, rewards and actions to a specif problem. We will solve the Travelling Salesman Problem using Q-learning. Given a set of traveling times between points, the problem is to find the fastes. In this case we will start and finish in the same location, so it's a round trip. Now we need map the problem to the algorithm. Naturally, the state is the location the salesman is at. The possible actions are the points it can visit. That was easy! Now what is the immediate reward for going from point 0 to point 1? We want the reward to be a monotonic descendent function with travelling time. That is, less time, more reward. In this case I used r(s,a) = 1/t_sa (make sure that there is no 0 time travel between points). Another possibility is to use r(s,a) = - t_sa. 
+
+Training:
+
+
+
