@@ -1,0 +1,4 @@
+absl-py==1.1.0
+numpy==1.22.4
+ortools==9.3.10497
+protobuf==4.21.1
